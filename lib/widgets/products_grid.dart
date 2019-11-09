@@ -5,9 +5,15 @@ import 'package:supershop/providers/products_provider.dart';
 import 'package:supershop/widgets/product_item.dart';
 
 class ProductsGrid extends StatelessWidget {
+  final bool _showFavorites;
+
+  ProductsGrid(this._showFavorites);
+
   @override
   Widget build(BuildContext context) {
-    List<Product> products = Provider.of<ProductsProvider>(context).products;
+    var productsData = Provider.of<ProductsProvider>(context);
+    List<Product> products =
+    _showFavorites ? productsData.favoriteProducts : productsData.products;
 
     return GridView.builder(
         padding: const EdgeInsets.all(10.0),
@@ -19,10 +25,13 @@ class ProductsGrid extends StatelessWidget {
         ),
         itemCount: products.length,
         itemBuilder: (context, i) {
-          return ProductItem(
-            id: products[i].id,
-            title: products[i].title,
-            imageUrl: products[i].imageUrl,
+          return ChangeNotifierProvider.value(
+            value: products[i],
+            child: ProductItem(
+//              id: products[i].id,
+//              title: products[i].title,
+//              imageUrl: products[i].imageUrl,
+            ),
           );
         });
   }

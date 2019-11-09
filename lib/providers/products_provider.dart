@@ -37,6 +37,7 @@ class ProductsProvider with ChangeNotifier {
     ),
   ];
 
+
   List<Product> get products {
     return new List<Product>.of(_items);
   }
@@ -49,4 +50,9 @@ class ProductsProvider with ChangeNotifier {
   Product findById(String id) {
     return _items.firstWhere((product) => product.id == id);
   }
+
+  List<Product> get favoriteProducts {
+    return _items.where((product) => product.isFavorite).toList();
+  }
+
 }
