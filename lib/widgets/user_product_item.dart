@@ -23,7 +23,10 @@ class UserProductItem extends StatelessWidget {
                       Icons.edit,
                       color: Theme.of(context).primaryColor,
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                          '/edit-product', arguments: _product);
+                    }),
                 IconButton(
                     icon: Icon(
                       Icons.delete,

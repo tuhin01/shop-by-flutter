@@ -4,6 +4,7 @@ import 'package:supershop/providers/cart_provider.dart';
 import 'package:supershop/providers/orders_provider.dart';
 import 'package:supershop/providers/products_provider.dart';
 import 'package:supershop/screens/cart_screen.dart';
+import 'package:supershop/screens/edit_product.dart';
 import 'package:supershop/screens/order_screen.dart';
 import 'package:supershop/screens/product_detail_screen.dart';
 import 'package:supershop/screens/products_overview_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
             '/cart': (_) => CartScreen(),
             '/orders': (_) => OrderScreen(),
             '/my-products': (_) => UserProductsScreen(),
+            '/edit-product': (_) => EditProduct(),
           },
         ),
       ),
