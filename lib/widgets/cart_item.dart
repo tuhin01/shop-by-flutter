@@ -56,8 +56,33 @@ class CartItem extends StatelessWidget {
           icon: Icons.delete,
           onTap: () {
             print('Deleted');
-            Provider.of<CartProvider>(context, listen: false).removeItem(
-                productId);
+            showDialog<void>(
+              context: context,
+              barrierDismissible: false, // user must tap button!
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Are you sure?'),
+                  content: Text(
+                      'Do you want to remove the item from the cart?'),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text('No'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    FlatButton(
+                      child: Text('Yes'),
+                      onPressed: () {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .removeItem(productId);
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
           },
         ),
       ],
