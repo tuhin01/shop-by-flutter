@@ -3,7 +3,7 @@ import 'package:supershop/models/cart_product.dart';
 import 'package:supershop/models/order.dart';
 
 class OrdersProvider with ChangeNotifier {
-  List<Order> _orders;
+  List<Order> _orders = [];
 
   List<Order> get orders {
     return List<Order>.of(_orders);
