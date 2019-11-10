@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supershop/providers/cart_provider.dart';
+import 'package:supershop/providers/orders_provider.dart';
 import 'package:supershop/providers/products_provider.dart';
 import 'package:supershop/screens/cart_screen.dart';
 import 'package:supershop/screens/product_detail_screen.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: ProductsProvider()),
         ChangeNotifierProvider.value(value: CartProvider()),
+        ChangeNotifierProvider.value(value: OrdersProvider()),
       ],
       child: ChangeNotifierProvider.value(
         value: ProductsProvider(),

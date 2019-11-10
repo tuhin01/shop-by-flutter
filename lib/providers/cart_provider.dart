@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
-import 'package:supershop/models/cart.dart';
+import 'package:supershop/models/cart_product.dart';
 
 class CartProvider with ChangeNotifier {
-  Map<String, Cart> _items = {};
+  Map<String, CartProduct> _items = {};
 
-  Map<String, Cart> get items {
-    return _items;
+  Map<String, CartProduct> get items {
+    return Map<String, CartProduct>.of(_items);
   }
 
   int get itemsCount {
@@ -25,7 +25,7 @@ class CartProvider with ChangeNotifier {
       _items.update(
         productId,
             (existingCartItem) =>
-            Cart(
+            CartProduct(
               id: existingCartItem.id,
               title: existingCartItem.title,
               price: existingCartItem.price,
@@ -36,7 +36,7 @@ class CartProvider with ChangeNotifier {
       _items.putIfAbsent(
         productId,
             () =>
-            Cart(
+            CartProduct(
               id: DateTime.now().toString(),
               title: title,
               price: price,
@@ -50,6 +50,10 @@ class CartProvider with ChangeNotifier {
   void removeItem(String productId) {
     _items.remove(productId);
     notifyListeners();
+  }
+
+  void clear() {
+    _items = {};
   }
 
 }

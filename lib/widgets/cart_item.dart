@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:supershop/models/cart.dart';
+import 'package:supershop/models/cart_product.dart';
 import 'package:supershop/providers/cart_provider.dart';
 
 class CartItem extends StatelessWidget {
-  final Cart _cart;
+  final CartProduct _cart;
   final String productId;
 
   CartItem(this._cart, this.productId);
