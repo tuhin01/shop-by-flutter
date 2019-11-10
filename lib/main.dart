@@ -7,6 +7,7 @@ import 'package:supershop/screens/cart_screen.dart';
 import 'package:supershop/screens/order_screen.dart';
 import 'package:supershop/screens/product_detail_screen.dart';
 import 'package:supershop/screens/products_overview_screen.dart';
+import 'package:supershop/screens/user_products_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
             '/product-detail': (_) => ProductDetailScreen(),
             '/cart': (_) => CartScreen(),
             '/orders': (_) => OrderScreen(),
+            '/my-products': (_) => UserProductsScreen(),
           },
         ),
       ),
