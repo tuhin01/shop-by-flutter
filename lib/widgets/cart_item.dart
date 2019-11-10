@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 import 'package:supershop/models/cart.dart';
+import 'package:supershop/providers/cart_provider.dart';
 
 class CartItem extends StatelessWidget {
   final Cart _cart;
+  final String productId;
 
-  CartItem(this._cart);
+  CartItem(this._cart, this.productId);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,11 @@ class CartItem extends StatelessWidget {
           caption: 'Delete',
           color: Colors.red,
           icon: Icons.delete,
-          onTap: () => print('Delete'),
+          onTap: () {
+            print('Deleted');
+            Provider.of<CartProvider>(context, listen: false).removeItem(
+                productId);
+          },
         ),
       ],
     );
