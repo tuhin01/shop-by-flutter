@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supershop/providers/cart_provider.dart';
 import 'package:supershop/providers/products_provider.dart';
+import 'package:supershop/screens/cart_screen.dart';
 import 'package:supershop/screens/product_detail_screen.dart';
 import 'package:supershop/screens/products_overview_screen.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (_) => ProductsOverviewScreen(),
             '/product-detail': (_) => ProductDetailScreen(),
+            '/cart': (_) => CartScreen(),
           },
         ),
       ),
