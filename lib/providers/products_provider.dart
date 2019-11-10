@@ -39,7 +39,7 @@ class ProductsProvider with ChangeNotifier {
 
 
   List<Product> get products {
-    return new List<Product>.of(_items);
+    return List<Product>.of(_items);
   }
 
   void addProduct(Product product) {

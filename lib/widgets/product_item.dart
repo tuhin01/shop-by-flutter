@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supershop/models/product.dart';
+import 'package:supershop/providers/cart_provider.dart';
 
 class ProductItem extends StatelessWidget {
-//  final String id;
-//  final String imageUrl;
-//  final String title;
-//
-//  ProductItem({this.id, this.imageUrl, this.title});
 
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
+    final cart = Provider.of<CartProvider>(context, listen: false);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
@@ -46,7 +43,9 @@ class ProductItem extends StatelessWidget {
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
             color: Theme.of(context).accentColor,
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(product.id, product.price, product.title);
+            },
           ),
           title: Text(
             product.title,
