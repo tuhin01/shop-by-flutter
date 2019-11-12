@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:supershop/models/product.dart';
+import 'package:supershop/providers/products_provider.dart';
 
 class UserProductItem extends StatelessWidget {
   final Product _product;
@@ -32,7 +34,10 @@ class UserProductItem extends StatelessWidget {
                     Icons.delete,
                     color: Colors.red,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<ProductsProvider>(context).deleteProduct(
+                        _product.id);
+                  },
                 ),
               ],
             ),

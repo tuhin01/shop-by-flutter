@@ -16,8 +16,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
   double productPrice = 0.0;
   var productDescription = '';
   var productImageUrl = '';
+  bool isFavorite;
   var _isInit = true;
-  Product _product;
+  String productId;
 
   void _submitForm() {
     final isValid = _formKey.currentState.validate();
@@ -25,7 +26,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
       return;
     }
     _formKey.currentState.save();
-    _product = Product(
+    Product product = Product(
       id: DateTime.now().toString(),
       title: productTitle,
       description: productDescription,
@@ -33,20 +34,38 @@ class _EditProductScreenState extends State<EditProductScreen> {
       imageUrl: productImageUrl,
     );
 
-    Provider.of<ProductsProvider>(context, listen: false).addProduct(_product);
+    if (productId == null) {
+      Provider.of<ProductsProvider>(context, listen: false).addProduct(product);
+    } else {
+      Product product = Product(
+        id: productId,
+        title: productTitle,
+        description: productDescription,
+        price: productPrice,
+        imageUrl: productImageUrl,
+        isFavorite: isFavorite,
+      );
+      Provider.of<ProductsProvider>(context, listen: false)
+          .editProduct(productId, product);
+    }
     Navigator.of(context).pop();
   }
 
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      var productId = ModalRoute.of(context).settings.arguments as String;
+      productId = ModalRoute
+          .of(context)
+          .settings
+          .arguments as String;
       if (productId != null) {
-        _product = Provider.of<ProductsProvider>(context).findById(productId);
+        Product _product =
+        Provider.of<ProductsProvider>(context).findById(productId);
         productTitle = _product.title;
         productPrice = _product.price;
         productDescription = _product.description;
         productImageUrl = _product.imageUrl;
+        isFavorite = _product.isFavorite;
       }
     }
     _isInit = false;
@@ -57,7 +76,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Product'),
+        title: productId != null ? Text('Edit Product') : Text('Add Product'),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.save), onPressed: _submitForm),
         ],

@@ -135,12 +135,22 @@ class ProductsProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void editProduct(String productId, Product product) {
+    final index = _items.indexWhere((prod) => prod.id == productId);
+    _items[index] = product;
+  }
+
   Product findById(String id) {
     return _items.firstWhere((product) => product.id == id);
   }
 
   List<Product> get favoriteProducts {
     return _items.where((product) => product.isFavorite).toList();
+  }
+
+  void deleteProduct(String id) {
+    _items.removeWhere((product) => product.id == id);
+    notifyListeners();
   }
 
 }
