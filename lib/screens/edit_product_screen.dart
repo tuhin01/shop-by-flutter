@@ -35,7 +35,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
     );
 
     if (productId == null) {
-      Provider.of<ProductsProvider>(context, listen: false).addProduct(product);
+      Provider.of<ProductsProvider>(context, listen: false)
+          .addProduct(product)
+          .then((_) {
+        Navigator.of(context).pop();
+      });
     } else {
       Product product = Product(
         id: productId,
@@ -47,8 +51,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
       );
       Provider.of<ProductsProvider>(context, listen: false)
           .editProduct(productId, product);
+      Navigator.of(context).pop();
+
     }
-    Navigator.of(context).pop();
   }
 
   @override
