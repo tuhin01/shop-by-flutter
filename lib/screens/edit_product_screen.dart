@@ -31,6 +31,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     setState(() {
       _isLoading = true;
     });
+    print(_isLoading);
     Product product = Product(
       id: DateTime.now().toString(),
       title: productTitle,
@@ -52,7 +53,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
           imageUrl: productImageUrl,
           isFavorite: isFavorite,
         );
-        Provider.of<ProductsProvider>(context, listen: false)
+        print("Edit");
+        print(productId);
+        await Provider.of<ProductsProvider>(context, listen: false)
             .editProduct(productId, product);
       }
       Navigator.of(context).pop();
